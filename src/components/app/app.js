@@ -23,7 +23,7 @@ onDeleted = (id) => {
 };
 addItem = (text) => {
   const todos = this.state.todoData;
-  this.setState({todos:[...todos,{label:text, important: false, done: false, id: this.maxId++}]})
+  this.setState({todoData:[...todos,{label:text, important: false, done: false, id: this.maxId++}]})
 };
 onImportant = () => {
 
