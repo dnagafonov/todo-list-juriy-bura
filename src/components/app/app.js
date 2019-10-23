@@ -10,19 +10,20 @@ import './app.css';
 
 export default class App extends Component {
 maxId = 0;
-
 state = {
   todoData: [
-    { label: 'Drink Coffee', important: false, done:false, id: 1 },
-    { label: 'Make Awesome App', important: true, done: false, id: 2 },
-    { label: 'Have a lunch', important: false, done: false, id: 3 }
+    { label: 'Drink Coffee', important: false, done:false, id: this.maxId++ },
+    { label: 'Make Awesome App', important: true, done: false, id: this.maxId++ },
+    { label: 'Have a lunch', important: false, done: false, id: this.maxId++ }
   ]
 };
-deleteItem = (id) => {
-
+onDeleted = (id) => {
+  const items = this.state.todoData.filter(el => el.id !== id);
+  this.setState({todoData: [...items]})
 };
 addItem = (text) => {
-
+  const todos = this.state.todoData;
+  this.setState({todos:[...todos,{label:text, important: false, done: false, id: this.maxId++}]})
 };
 onImportant = () => {
 
@@ -41,11 +42,11 @@ render() {
 
           <TodoList
             todos={this.state.todoData}
-            onDeleted={ this.deleteItem }/>
+            onDeleted={ this.onDeleted }
+            onImportant={this.onImportant}
+            onDone={this.onDone}/>
 
-          <ItemAddForm addItem={this.addItem}
-                       onImportant={this.onImportant}
-                       onDone={this.onDone}/>
+          <ItemAddForm addItem={this.addItem}/>
       </div>
     );
   }

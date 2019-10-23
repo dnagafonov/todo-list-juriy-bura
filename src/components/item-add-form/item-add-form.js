@@ -8,7 +8,7 @@ export default class ItemAddForm extends Component {
     };
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.addItem(this.state.value)
+        this.props.addItem(this.state.value);
         this.setState({value:''})
     };
     handleChange = (event) => {
