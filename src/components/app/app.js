@@ -40,11 +40,19 @@ onDone = (id) => {
     const newItem = {...oldItem, done: !oldItem.done};
     return {todoData:[...todoData.slice(0,index), newItem, ...todoData.slice(index + 1)]}
   })
+};
+countDone = () => {
+  return this.state.todoData.filter(el => el.done === true).length
+}
+countActive = () => {
+  const done = this.state.todoData.filter(el => el.done === true).length;
+  const all = this.state.todoData.length;
+  return all-done;
 }
 render() {
   return (
       <div className="todo-app">
-          <AppHeader toDo={1} done={3} />
+          <AppHeader toDo={this.countActive()} done={this.countDone()} />
           <div className="top-panel d-flex">
             <SearchPanel />
             <ItemStatusFilter />

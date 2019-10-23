@@ -14,17 +14,13 @@
   user-select: none;
 }
 
-.todo-list-item.done .todo-list-item-label {
-  text-decoration: line-through;
-}
-
 .todo-list-item.important .todo-list-item-label {
   font-weight: bold;
-  color: forestgreen;
+  color: hotpink;
 }
 
 .todo-list-item.done .todo-list-item-label {
   font-weight: bold;
   text-decoration: line-through;
-  color:hotpink;
+  color:forestgreen;
 }
