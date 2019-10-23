@@ -25,11 +25,21 @@ addItem = (text) => {
   const todos = this.state.todoData;
   this.setState({todoData:[...todos,{label:text, important: false, done: false, id: this.maxId++}]})
 };
-onImportant = () => {
-
+onImportant = (id) => {
+  this.setState(({todoData}) => {
+    const index = todoData.findIndex(el => el.id === id);
+    const oldItem = todoData[index];
+    const newItem = {...oldItem, important: !oldItem.important}
+    return {todoData:[...todoData.slice(0,index), newItem, ...todoData.slice(index + 1)]}
+  })
 };
-onDone = () => {
-
+onDone = (id) => {
+  this.setState(({todoData}) => {
+    const index = todoData.findIndex(el => el.id === id);
+    const oldItem = todoData[index];
+    const newItem = {...oldItem, done: !oldItem.done};
+    return {todoData:[...todoData.slice(0,index), newItem, ...todoData.slice(index + 1)]}
+  })
 }
 render() {
   return (
@@ -42,7 +52,7 @@ render() {
 
           <TodoList
             todos={this.state.todoData}
-            onDeleted={ this.onDeleted }
+            onDeleted={this.onDeleted}
             onImportant={this.onImportant}
             onDone={this.onDone}/>
 

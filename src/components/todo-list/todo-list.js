@@ -13,8 +13,8 @@ export default class TodoList extends React.Component{
           <TodoListItem
               {...itemProps }
               onDeleted={() => onDeleted(id)}
-              onImportant={() => onImportant()}
-              onDone={() => onDone()}
+              onImportant={() => onImportant(id)}
+              onDone={() => onDone(id)}
           />
         </li>
         );

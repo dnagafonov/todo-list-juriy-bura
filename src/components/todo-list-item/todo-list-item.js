@@ -3,13 +3,18 @@ import './todo-list-item.css';
 export default class TodoListItem extends Component {
 
   render() {
-    const { label, onDeleted, onDone, onImportant} = this.props;
+    const { done, important, label, onDeleted, onDone, onImportant} = this.props;
 
+    let classNames = 'todo-list-item';
+    if(done){
+      classNames += ' done'
+    }
+    if(important){
+      classNames += ' important'
+    }
     return (
-        <div className='todo-list-item'>
-          <span>
-            {label}
-          </span>
+        <span className={classNames}>
+          <span className="todo-list-item-label">{label}</span>
           <button type="button"
                   className="btn btn-outline-danger btn-sm float-right"
                   onClick={onDeleted}>
@@ -25,7 +30,7 @@ export default class TodoListItem extends Component {
                   onClick={onDone}>
             <i className="fa fa-check-square"/>
           </button>
-        </div>
+        </span>
     );
   };
 }
