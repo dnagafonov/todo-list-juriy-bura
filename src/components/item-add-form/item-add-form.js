@@ -12,7 +12,7 @@ export default class ItemAddForm extends Component {
         this.setState({value:''})
     };
     handleChange = (event) => {
-            this.setState({value: event.target.value})
+        this.setState({value: event.target.value})
     };
     render() {
     return (

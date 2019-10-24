@@ -9,8 +9,7 @@ export default class SearchPanel extends React.Component{
   handleChange = (event) => {
     event.preventDefault();
     this.setState({value: event.target.value});
-    this.props.searchTodo(event.target.value);
-    console.log(this.state.value);
+    this.props.searchTodo(event.target.value.toLowerCase());
   };
   render() {
      return(
