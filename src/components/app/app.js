@@ -25,7 +25,9 @@ onDeleted = (id) => {
 };
 addItem = (text) => {
   const todos = this.state.todoData;
-  this.setState({todoData:[...todos,{label:text, important: false, done: false, id: this.maxId++}]})
+  if(text !== undefined && text !== ''){
+      this.setState({todoData:[...todos,{label:text, important: false, done: false, id: this.maxId++}]})
+  }
 };
 
 onImportant = (id) => {
