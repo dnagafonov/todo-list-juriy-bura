@@ -15,7 +15,8 @@ state = {
     { label: 'Drink Coffee', important: false, done:false, id: this.maxId++ },
     { label: 'Make Awesome App', important: true, done: false, id: this.maxId++ },
     { label: 'Have a lunch', important: false, done: false, id: this.maxId++ }
-  ]
+  ],
+  search:''
 };
 onDeleted = (id) => {
   const items = this.state.todoData.filter(el => el.id !== id);
@@ -43,23 +44,34 @@ onDone = (id) => {
 };
 countDone = () => {
   return this.state.todoData.filter(el => el.done === true).length
-}
+};
 countActive = () => {
   const done = this.state.todoData.filter(el => el.done === true).length;
   const all = this.state.todoData.length;
   return all-done;
+};
+onSearchChange = (search) => {
+  this.setState({search})
 }
-render() {
+searchTodo = (todoData, searchInput) => {
+  if(searchInput.length === 0){
+    return todoData
+  }
+  return  todoData.filter(el => el.label.includes(searchInput) ? todoData[el.id]:'');
+};
+  render() {
+    const { todoData, search} = this.state;
+    const visibleItems = this.searchTodo(todoData, search);
   return (
       <div className="todo-app">
           <AppHeader toDo={this.countActive()} done={this.countDone()} />
           <div className="top-panel d-flex">
-            <SearchPanel />
+            <SearchPanel searchTodo = {this.onSearchChange}/>
             <ItemStatusFilter />
           </div>
 
           <TodoList
-            todos={this.state.todoData}
+            todos={visibleItems}
             onDeleted={this.onDeleted}
             onImportant={this.onImportant}
             onDone={this.onDone}/>

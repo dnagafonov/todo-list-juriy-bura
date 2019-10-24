@@ -12,16 +12,16 @@ export default class ItemAddForm extends Component {
         this.setState({value:''})
     };
     handleChange = (event) => {
-        this.setState({value: event.target.value})
+            this.setState({value: event.target.value})
     };
     render() {
     return (
-        <form className="item-add-form" onSubmit={this.handleSubmit}>
-            <input type='text' value={this.state.value} onChange={this.handleChange}/>
+        <form className="item-add-form d-flex" onSubmit={this.handleSubmit}>
+            <input type='text' className='form-control' value={this.state.value} onChange={this.handleChange}/>
             <button className="btn btn-outline-secondary float-right">
                 Add
             </button>
-          </form>
+        </form>
         )
     }
 }
